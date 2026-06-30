@@ -1,8 +1,8 @@
 export const PartnershipBanner = () => {
   return (
-    <div className="flex flex-col md:flex-row w-full md:h-[400px] font-sans overflow-hidden">
+    <div className="flex flex-col md:flex-row w-full md:h-100 font-sans overflow-hidden">
       {/* Left side: Image background */}
-      <div 
+      <div
         className="w-full md:w-1/3 min-h-75 md:min-h-full bg-cover bg-center bg-no-repeat relative"
         style={{
           // Using a high-quality placeholder that matches the "global partnership/tech/city" theme
@@ -19,15 +19,15 @@ export const PartnershipBanner = () => {
           <h2 className="text-[45px] md:text-5xl font-bold mb-6 leading-tight">
             Ready to Explore Partnership?
           </h2>
-          
+
           <p className="text-lg md:text-[20px] text-gray-300 mb-10 leading-relaxed font-light">
-            Our B2B partnership model is engineered to scale with your airline's ambitions, 
-            delivering measurable ROI at every stage.
+            Our B2B partnership model is engineered to scale with your airline's
+            ambitions, delivering measurable ROI at every stage.
           </p>
 
-          <button 
+          <button
             className="bg-white text-brand cursor-pointer py-4 px-10 rounded-lg hover:bg-gray-100 transition-colors duration-200 tracking-wide text-sm uppercase"
-            onClick={() => console.log('Partnering...')}
+            onClick={() => console.log("Partnering...")}
           >
             Partner With Us
           </button>

@@ -1,12 +1,12 @@
-import { motion } from 'framer-motion';
-import { Building2, Mail, Phone} from 'lucide-react';
-import { useState } from 'react';
+import { motion } from "framer-motion";
+import { Building2, Mail, Phone } from "lucide-react";
+import { useState } from "react";
 
-export const FlipCard = ({ airline }:{airline:any}) => {
+export const FlipCard = ({ airline }: { airline: any }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div 
+    <div
       className="relative w-80 h-105 shrink-0 cursor-pointer group/card perspective-1000"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -17,17 +17,22 @@ export const FlipCard = ({ airline }:{airline:any}) => {
         className="w-full h-full relative preserve-3d"
         initial={false}
         animate={{ rotateY: isHovered ? 180 : 0 }}
-        transition={{ duration: 0.6, type: 'spring', stiffness: 260, damping: 20 }}
-        style={{ transformStyle: 'preserve-3d' }}
+        transition={{
+          duration: 0.6,
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+        }}
+        style={{ transformStyle: "preserve-3d" }}
       >
         {/* Front of Card (Image) */}
-        <div 
+        <div
           className="absolute inset-0 w-full h-full overflow-hidden shadow-lg backface-hidden"
-          style={{ backfaceVisibility: 'hidden' }}
+          style={{ backfaceVisibility: "hidden" }}
         >
-          <img 
-            src={airline.imageUrl} 
-            alt={airline.company} 
+          <img
+            src={airline.imageUrl}
+            alt={airline.company}
             className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
           />
           {/* Bottom Gradient and Text */}
@@ -39,11 +44,11 @@ export const FlipCard = ({ airline }:{airline:any}) => {
         </div>
 
         {/* Back of Card (Text Info) */}
-        <div 
+        <div
           className="absolute inset-0 w-full h-full rounded-xl overflow-hidden shadow-xl bg-white border border-slate-100 p-8 flex flex-col backface-hidden"
-          style={{ 
-            backfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)' 
+          style={{
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
           }}
         >
           {/* Header */}
@@ -72,7 +77,7 @@ export const FlipCard = ({ airline }:{airline:any}) => {
             <h4 className="text-slate-500 text-xs font-semibold tracking-wide mb-4 uppercase">
               Contact Us
             </h4>
-            
+
             <div className="space-y-4">
               {/* Email */}
               <div className="flex items-center gap-4">
@@ -81,7 +86,9 @@ export const FlipCard = ({ airline }:{airline:any}) => {
                 </div>
                 <div>
                   <p className="text-slate-400 text-xs font-medium">Email</p>
-                  <p className="text-slate-800 text-sm font-semibold">{airline.email}</p>
+                  <p className="text-slate-800 text-sm font-semibold">
+                    {airline.email}
+                  </p>
                 </div>
               </div>
 
@@ -92,17 +99,19 @@ export const FlipCard = ({ airline }:{airline:any}) => {
                 </div>
                 <div>
                   <p className="text-slate-400 text-xs font-medium">Phone</p>
-                  <p className="text-slate-800 text-sm font-semibold">{airline.phone}</p>
+                  <p className="text-slate-800 text-sm font-semibold">
+                    {airline.phone}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-          
+
           {/* Faint background text watermark */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] overflow-hidden">
-             <h1 className="text-8xl font-black italic text-[#1e3a8a] -rotate-12 whitespace-nowrap">
-               {airline.title}
-             </h1>
+            <h1 className="text-8xl font-black italic text-[#1e3a8a] -rotate-12 whitespace-nowrap">
+              {airline.title}
+            </h1>
           </div>
         </div>
       </motion.div>

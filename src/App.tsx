@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 import { Routes, Route, Link, NavLink } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -10,60 +12,100 @@ import Contacts from "./pages/Contacts";
 import Footer from "./components/home/Footer";
 import Partners from "./pages/Partners";
 
+const navItems = [
+  { to: "/", label: "Home" },
+  { to: "/services", label: "Services" },
+  { to: "/insights", label: "Insights" },
+  { to: "/about", label: "About Us" },
+  { to: "/contacts", label: "Contacts" },
+];
+
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `nav-link transition ${isActive ? "text-brand active" : "hover:text-brand/85"}`;
+
   return (
     <div>
       {/* Navigation */}
       <nav className="bg-white/80 fixed w-full top-0 left-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="text-2xl font-bold text-brand">
-            <img src="/images/logo.png" className="w-38.5 h-13.5" />
+          <Link
+            to="/"
+            className="text-2xl font-bold text-brand"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <img src="/images/logo.png" className="w-38.5 h-13.5" alt="GHI Assets" />
           </Link>
-          <div className="flex gap-8">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `nav-link transition ${isActive ? "text-brand active" : "hover:text-brand/85"}`
-              }
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/services"
-              className={({ isActive }) =>
-                `nav-link transition ${isActive ? "text-brand active" : "hover:text-brand/85"}`
-              }
-            >
-              Services
-            </NavLink>
 
-            <NavLink
-              to="/insights"
-              className={({ isActive }) =>
-                `nav-link transition ${isActive ? "text-brand active" : "hover:text-brand/85"}`
-              }
-            >
-              Insights
-            </NavLink>
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                `nav-link transition ${isActive ? "text-brand active" : "hover:text-brand/85"}`
-              }
-            >
-              About Us
-            </NavLink>
-            <NavLink
-              to="/contacts"
-              className={({ isActive }) =>
-                `nav-link transition ${isActive ? "text-brand active" : "hover:text-brand/85"}`
-              }
-            >
-              Contacts
-            </NavLink>
+          <div className="hidden md:flex gap-8">
+            {navItems.map((item) => (
+              <NavLink key={item.to} to={item.to} className={navLinkClass}>
+                {item.label}
+              </NavLink>
+            ))}
           </div>
+
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-brand transition hover:bg-brand/10 md:hidden"
+            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
+
       </nav>
+
+      <div
+        className={`fixed inset-0 z-40 bg-black/40 transition-opacity md:hidden ${
+          isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        aria-hidden="true"
+        onClick={() => setIsMenuOpen(false)}
+      />
+
+      <aside
+        className={`fixed right-0 top-0 z-50 flex h-screen w-1/2 flex-col bg-white px-6 py-5 shadow-2xl transition-transform duration-300 md:hidden ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+        aria-label="Mobile navigation"
+      >
+        <div className="mb-10 flex items-center justify-between">
+          <Link
+            to="/"
+            className="text-2xl font-bold text-brand"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <img src="/images/logo.png" className="w-38.5 h-13.5" alt="GHI Assets" />
+          </Link>
+
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-brand transition hover:bg-brand/10"
+            aria-label="Close navigation menu"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-6 text-lg">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={navLinkClass}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </div>
+      </aside>
 
       {/* Routes */}
       <Routes>

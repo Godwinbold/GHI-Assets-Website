@@ -1,25 +1,29 @@
 export function FeaturesGrid() {
   const features = [
     {
-      id: '01',
-      title: 'Market Entry & Expansion',
-      description: 'Whether launching a new route or scaling an existing corridor, we provide the market intelligence, regulatory guidance, and stakeholder access to accelerate your growth in new territories.'
+      id: "01",
+      title: "Market Entry & Expansion",
+      description:
+        "Whether launching a new route or scaling an existing corridor, we provide the market intelligence, regulatory guidance, and stakeholder access to accelerate your growth in new territories.",
     },
     {
-      id: '02',
-      title: 'Revenue Optimisation',
-      description: 'A holistic review of your distribution mix, pricing strategy, and ancillary revenue streams. Identifying the structural improvements that unlock sustainable yield growth.'
+      id: "02",
+      title: "Revenue Optimisation",
+      description:
+        "A holistic review of your distribution mix, pricing strategy, and ancillary revenue streams. Identifying the structural improvements that unlock sustainable yield growth.",
     },
     {
-      id: '03',
-      title: 'Operational Benchmarking',
-      description: 'Rigorous comparison of your ground handling, turnaround performance, and cargo operations against industry best practice, with a prioritised improvement roadmap.'
+      id: "03",
+      title: "Operational Benchmarking",
+      description:
+        "Rigorous comparison of your ground handling, turnaround performance, and cargo operations against industry best practice, with a prioritised improvement roadmap.",
     },
     {
-      id: '04',
-      title: 'Partnership Development',
-      description: 'Whether launching a new route or scaling an existing corridor, we provide the market intelligence, regulatory guidance, and stakeholder access to accelerate your growth in new territories.'
-    }
+      id: "04",
+      title: "Partnership Development",
+      description:
+        "Whether launching a new route or scaling an existing corridor, we provide the market intelligence, regulatory guidance, and stakeholder access to accelerate your growth in new territories.",
+    },
   ];
 
   return (
@@ -39,12 +43,6 @@ export function FeaturesGrid() {
               </p>
             </div>
           ))}
-        </div>
-        
-        <div className="mt-20 flex justify-center">
-          <button className="bg-brand text-white px-10 py-4 rounded-md font-semibold text-sm uppercase tracking-wider hover:bg-[#002d7a] transition-colors">
-            Discuss Your Requirement
-          </button>
         </div>
       </div>
     </div>

@@ -21,14 +21,14 @@ export default function About() {
           subtext={"Fifteen years of "}
           colorText="Flight."
         />
-        <p className="max-w-[690px] mb-5">
+        <p className="max-w-172.5 mb-5">
           GHI Assets Limited is a diversified aviation investment and holding
           company incorporated under Nigeria law in 2004. With over two decades
           of industry presence, GHI has established itself as a trusted partner
           to international airlines seeking reliable, complaint, and
           performance-driven representation in West Africa.
         </p>
-        <p className="max-w-[690px]">
+        <p className="max-w-172.5">
           At its core, GHI operates as a strategic anhor for a portfolio of
           specialized aviation services companies. Through majority interests in
           its subsidiaries, GHI delivers tailored commercial and operational
@@ -38,31 +38,31 @@ export default function About() {
       </Wrapper>
 
       <Wrapper className="bg-white grid grid-cols-1 ">
-        <div className="grid grid-cols-3 gap-2.5">
+        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 xl:grid-cols-3">
           <img
             src="/images/confrence.png"
-            alt=""
-            className="col-span-2 w-full h-[353px] object-cover"
+            alt="Conference"
+            className="w-full h-72 sm:h-88.25 object-cover sm:col-span-2 xl:col-span-2"
           />
           <img
             src="/images/a-man-holding-award.png"
-            alt=""
-            className="w-full h-[353px] object-cover"
+            alt="Award presentation"
+            className="w-full h-72 sm:h-88.25 object-cover"
           />
           <img
             src="/images/suit-man.png"
-            alt=""
-            className="w-full h-[353px] "
+            alt="Suit man"
+            className="w-full h-72 sm:h-88.25 object-cover"
           />
           <img
             src="/images/graduate.png"
-            alt=""
-            className="w-full h-[353px] object-top"
+            alt="Graduate"
+            className="w-full h-72 sm:h-88.25 object-cover"
           />
           <img
             src="/images/office-man-wom.png"
-            alt=""
-            className="w-full h-[353px] object-cover"
+            alt="Office colleagues"
+            className="w-full h-72 sm:h-88.25 object-cover"
           />
         </div>
       </Wrapper>
@@ -83,7 +83,7 @@ export default function About() {
                 key={item.id}
                 src={item.image}
                 alt={item.title}
-                className="w-full h-[300px] object-cover hover:scale-105 transition-all duration-300 ease-in-out"
+                className="w-full h-75 object-cover hover:scale-105 transition-all duration-300 ease-in-out"
               />
               <p className="absolute z-2 text-white left-2 top-2">
                 {item.title}
