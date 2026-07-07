@@ -1,6 +1,7 @@
 
 import {motion} from "framer-motion"
 import { Building2, Mail, Phone } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { useState } from "react";
 export const Card = ({ airline }:{airline: any}) => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -67,6 +68,18 @@ export const Card = ({ airline }:{airline: any}) => {
                 <p className="text-sm md:text-base font-bold text-gray-800">{airline.phone}</p>
               </div>
             </div>
+
+            {airline.whatsapp && (
+              <div className="flex items-center gap-5">
+                <div className="p-3 bg-green-50 rounded-xl text-green-500">
+                  <FaWhatsapp size={22} />
+                </div>
+                <div>
+                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">WhatsApp</p>
+                  <p className="text-sm md:text-base font-bold text-gray-800">{airline.whatsapp}</p>
+                </div>
+              </div>
+            )}
           </div>
           
           <div className="absolute bottom-12 right-6 opacity-5 pointer-events-none select-none">

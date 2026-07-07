@@ -47,7 +47,7 @@ export default function Carousel() {
         <div className="w-full lg:w-100 shrink-0 flex flex-col justify-center">
         
           <ContainerHeader colorText='Modern Aviation' helperText=' Five specialized practice areas, each staffed by domain experts with decades of hands-on aviation experience'
-          subtext=' The Connective Tissue of ' title=' OUR SERVICES' 
+          subtext=' The Connective Framework of ' title=' OUR SERVICES' 
           
           />
 

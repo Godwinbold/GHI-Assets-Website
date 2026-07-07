@@ -34,8 +34,8 @@ export default function Contacts() {
                   Lagos, Nigeria - Head Office
                 </h4>
                 <p className="text-sm">
-                  14B Admiralty Way, Lekki Phase 1<br />
-                  Lagos, Nigeria
+                  45 Oduduwa Way, Ikeja GRA,<br />
+                  Lagos.
                 </p>
               </div>
 
@@ -44,10 +44,10 @@ export default function Contacts() {
                   Email
                 </h4>
                 <a
-                  href="mailto:enquiries@ghiassets.com"
+                  href="mailto:info@ghiassets.com"
                   className="text-sm hover:text-brand transition-colors"
                 >
-                  enquiries@ghiassets.com
+                  info@ghiassets.com
                 </a>
               </div>
 

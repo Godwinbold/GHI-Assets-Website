@@ -15,8 +15,8 @@ const GetInTouch = () => {
   hideLine={false}
       />
       <div className='mt-15.75 flex flex-col gap-5'>
-         <TextTitle title='Lagos, Nigeria - Head Office' description='14B Admiralty Way, Lekki Phase 1 Lagos, Nigeria'/>
-         <TextTitle title='Email' description='enquiries@ghiassets.com'/>
+         <TextTitle title='Lagos, Nigeria - Head Office' description='45 Oduduwa Way, Ikeja GRA, Lagos.'/>
+         <TextTitle title='Email' description='info@ghiassets.com'/>
          <TextTitle title='Phone' description='+234 803 491 1715'/>
       </div>
      
