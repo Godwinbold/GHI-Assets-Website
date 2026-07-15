@@ -3,10 +3,6 @@ import Breadcrumb from "./BreadCrumbs";
 import { RiTwitterXLine } from "react-icons/ri";
 import { SlSocialLinkedin } from "react-icons/sl";
 
-interface BreadcrumbItem {
-  label: string;
-  href?: string;
-}
 
 interface PageHeroProps {
   imageSrc: string;

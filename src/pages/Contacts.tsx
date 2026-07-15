@@ -2,11 +2,38 @@ import PageHero from "../components/common/PageHero";
 import Wrapper from "../components/home/Wrapper";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer, defaultViewport } from "../lib/animations";
+import SEO from "../components/common/SEO";
 
 export default function Contacts() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact GHI Assets Limited",
+    "description": "Get in touch with GHI Assets Head Office in Lagos, Nigeria. Contact us for ground handling representation, route development, aviation training, and air cargo solutions.",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "GHI Assets Limited",
+      "image": "https://ghiassets.com/images/logo.png",
+      "telephone": "+234 803 491 1715",
+      "email": "info@ghiassets.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "45 Oduduwa Way, Ikeja GRA",
+        "addressLocality": "Lagos",
+        "addressCountry": "NG"
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-surface overflow-x-hidden">
+      <SEO
+        title="Contact Us | Talk to Our Aviation Experts"
+        description="Contact GHI Assets Limited's Lagos office for inquiries regarding airline representation, airport cargo operations, route development, aviation training, and aviation strategy."
+        schema={schema}
+      />
       <PageHero
+
         imageSrc="/images/about-us.png"
         imageAlt="Shaping the Future of Nigeria Aviation"
         title={"Contact Us"}

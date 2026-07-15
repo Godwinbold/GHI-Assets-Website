@@ -24,10 +24,33 @@ const iconMap: Record<string, LucideIcon> = {
   clock: Clock,
 };
 
+import SEO from "../components/common/SEO";
+
 const Career = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Frontier Academy",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "GHI Assets Limited"
+    },
+    "description": "Professional training and IATA-certified courses for travel, tourism, and aviation careers in Nigeria.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "NG"
+    }
+  };
+
   return (
     <div className="min-h-screen overflow-x-hidden">
+      <SEO
+        title="Frontier Academy | Aviation Careers & Training"
+        description="Launch your travel, tourism, or aviation career with IATA-certified programs at Frontier Academy, powered by GHI Assets Limited. Professional development for aviation professionals in Nigeria."
+        schema={schema}
+      />
       <PageHero
+
         imageSrc={`/images/control_room.png`}
         imageAlt={"half world"}
         title="Career in Travels, Tourism & Aviation"

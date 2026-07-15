@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom"
-import { Card, CardAction, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card"
+import { Card, CardDescription, CardFooter, CardHeader } from "../ui/card"
 import { ChevronRight } from "lucide-react"
 
 

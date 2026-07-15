@@ -7,12 +7,33 @@ import cargoPageData from '../constants/services';
 import Wrapper from '../components/home/Wrapper';
 import ContainerHeader from '../components/home/ContainerHeader';
 import PartnershipBanner from '../components/common/PartnershipBanner';
-import { fadeInUp, staggerContainer, defaultViewport } from '../lib/animations';
+import { fadeInUp, defaultViewport } from '../lib/animations';
+import SEO from '../components/common/SEO';
 
 export default function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
   const data = cargoPageData.find((item) => item.slug === slug);
   const partners = useMemo(() => data?.sectionThree.partners ?? [], [data]);
+
+  const serviceTitle = data
+    ? `${data.sectionOne.tag} - ${data.hero.title.replace(/\.$/, "")}`
+    : "Aviation Service Detail";
+  
+  const serviceDescription = data
+    ? data.sectionOne.description
+    : "GHI Assets Limited delivers precision-engineered aviation consultancy and logistics services.";
+
+  const serviceSchema = data ? {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": data.sectionOne.tag,
+    "description": data.sectionOne.description,
+    "provider": {
+      "@type": "Organization",
+      "name": "GHI Assets Limited"
+    }
+  } : undefined;
+
   const carouselViewportRef = useRef<HTMLDivElement>(null);
   const carouselTrackRef = useRef<HTMLDivElement>(null);
   const [carouselOffset, setCarouselOffset] = useState(0);
@@ -61,6 +82,12 @@ export default function ServiceDetail() {
 
   return (
     <div className="min-h-screen overflow-x-hidden">
+      <SEO
+        title={serviceTitle}
+        description={serviceDescription}
+        image={data?.hero.image}
+        schema={serviceSchema}
+      />
       <PageHero
         imageSrc={`${data?.hero.image}`}
         imageAlt={data?.hero.imageAlt}

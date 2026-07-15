@@ -19,8 +19,6 @@ function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
 
   useEffect(() => {
     if (!isInView) return;
-    
-    let start = 0;
     const end = value;
     const duration = 2000; // 2 seconds
     const startTime = performance.now();
