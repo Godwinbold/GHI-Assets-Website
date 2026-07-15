@@ -4,8 +4,10 @@ const Hero = () => {
   return (
     <div className="relative w-full mx-auto h-screen overflow-hidden bg-[#00205b]">
       <video
-        className="absolute inset-0 h-full w-full object-cover "
+        className="absolute inset-0 h-full w-full object-cover"
         src="/video/ghihero.mp4"
+        poster="/images/poster.png"
+        preload="auto"
         autoPlay
         loop
         muted

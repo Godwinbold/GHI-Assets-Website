@@ -1,3 +1,5 @@
+import { useInView } from "../../lib/useInView";
+
 interface LeadershipCardProps {
   imageSrc: string;
   name: string;
@@ -11,8 +13,13 @@ const LeadershipCard = ({
   role,
   description,
 }: LeadershipCardProps) => {
+  const { ref, isInView } = useInView<HTMLElement>();
+
   return (
-    <article className="overflow-hidden  md:grid md:grid-cols-2  bg-white shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
+    <article
+      ref={ref}
+      className={`overflow-hidden md:grid md:grid-cols-2 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-700 ease-out ${isInView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+    >
       {/* Image — single block, scales on all screen sizes */}
       <div className="w-full hidden md:block h-auto overflow-hidden bg-[#347990]">
         <img

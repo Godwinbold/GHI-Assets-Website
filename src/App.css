@@ -1,11 +1,10 @@
-
 .nav-link {
   position: relative;
   text-decoration: none;
 }
 
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -20,4 +19,18 @@
 .nav-link:hover::after,
 .nav-link.active::after {
   transform: scaleX(1);
+}
+
+@keyframes bounce-top {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+.animate-bounce-top {
+  animation: bounce-top 1.5s ease-in-out infinite;
 }

@@ -1,13 +1,22 @@
-import React, { type JSXElementConstructor, type ReactElement} from "react";
+import React, { type JSXElementConstructor, type ReactElement } from "react";
+import { useInView } from "../../lib/useInView";
 
-export const ServiceCard = ({ title, description, icon }:{
-    title: string;
-    description: string;
-    icon: ReactElement<unknown, string | JSXElementConstructor<any>>
+export const ServiceCard = ({
+  title,
+  description,
+  icon,
+}: {
+  title: string;
+  description: string;
+  icon: ReactElement<unknown, string | JSXElementConstructor<any>>;
 }) => {
+  const { ref, isInView } = useInView<HTMLDivElement>();
+
   return (
-    <div className="group  relative bg-white p-8 rounded-xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-xl flex flex-col items-start overflow-hidden h-full">
-      
+    <div
+      ref={ref}
+      className={`group relative bg-white p-8 rounded-xl shadow-sm border border-gray-100 transition-all duration-700 ease-out ${isInView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} hover:shadow-xl flex flex-col items-start overflow-hidden h-full`}
+    >
       {/* Decorative subtle blob in top right corner (matching image) */}
       <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-50 rounded-full opacity-50 group-hover:bg-blue-100 transition-colors duration-500" />
 
@@ -25,7 +34,7 @@ export const ServiceCard = ({ title, description, icon }:{
           {description}
         </p>
       </div>
-      
+
       {/* Subtle bottom border accent that appears on hover */}
       <div className="absolute bottom-0 left-0 w-0 h-1 bg-[#4A99B8] transition-all duration-500 group-hover:w-full" />
     </div>
