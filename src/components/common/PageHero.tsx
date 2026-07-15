@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Breadcrumb from "./BreadCrumbs";
 import { RiTwitterXLine } from "react-icons/ri";
-import { SlSocialLinkedin } from "react-icons/sl";
+import { SlSocialInstagram } from "react-icons/sl";
 
 
 interface PageHeroProps {
@@ -66,11 +66,15 @@ const PageHero = ({
             <div className="flex gap-2">
               {[
                 {
-                  href: "https://linkedin.com",
-                  label: "LinkedIn",
-                  Icon: SlSocialLinkedin,
+                  href: "https://x.com/ghi_assets",
+                  label: "X",
+                  Icon: RiTwitterXLine,
                 },
-                { href: "https://x.com", label: "X", Icon: RiTwitterXLine },
+                {
+                  href: "https://www.instagram.com/ghi_assets/",
+                  label: "Instagram",
+                  Icon: SlSocialInstagram,
+                },
               ].map(({ href, label, Icon }) => (
                 <Link
                   key={label}

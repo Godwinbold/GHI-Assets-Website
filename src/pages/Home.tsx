@@ -7,7 +7,6 @@ import { PartnershipBanner } from "../components/home/PartnerWithUs";
 import SolutionForAirline from "../components/home/SolutionForAirline";
 import TrustedPartner from "../components/home/TrustedPartner";
 import WhyGHI from "../components/home/WhyGHI";
-import AviationStats from "../components/home/AviationStats";
 import SEO from "../components/common/SEO";
 
 export default function Home() {
