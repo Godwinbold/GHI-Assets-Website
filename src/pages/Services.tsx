@@ -22,7 +22,7 @@ const Services = () => {
   <ContainerHeader
   title='OUR SERVICES'
   subtext='The'
-  colorText='Connective Tissue'
+  colorText='Connective Framework'
   thirdText='of Modern Aviation'
   helperText="Five specialised aviation service practices, each led by domain experts with decades of hands-on experience across Nigeria's aviation industry — delivering cargo representation, freight logistics, airline sales, and market development solutions that keep West Africa's aviation ecosystem connected, competitive, and commercially strong."
   />

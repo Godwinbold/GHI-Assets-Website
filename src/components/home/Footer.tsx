@@ -98,9 +98,9 @@ const Footer = () => {
             Get in Touch
           </p>
           {[
-            { icon: "ti-mail", text: "enquiries@ghiassets.com" },
+            { icon: "ti-mail", text: "info@ghiassets.com" },
             { icon: "ti-phone", text: "+234 803 491 1715" },
-            { icon: "ti-map-pin", text: "Ikeja, Lagos" },
+            { icon: "ti-map-pin", text: "Ikeja GRA, Lagos" },
           ].map(({ icon, text }) => (
             <div key={text} className="mb-3.5 flex items-center gap-2.5 text-[14px] text-white/75">
               <i className={`ti ${icon} text-base text-white/40`} aria-hidden />
