@@ -50,7 +50,7 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
         style={{ y: yText, opacity: opacityText, scale: scaleText }}
-        className="absolute bottom-16 left-1/2 z-10 w-full -translate-x-1/2 px-6 text-center font-bold text-[32px] leading-tight text-white sm:text-[42px] md:left-20 md:top-1/2 md:bottom-auto md:w-auto md:translate-x-0 md:-translate-y-1/2 md:px-0 md:text-left md:text-6xl md:leading-tight lg:text-7xl"
+        className="absolute bottom-16 left-1/2 z-10 w-full -translate-x-1/2 px-6 text-center font-bold text-[32px] leading-tight text-white sm:text-[42px] md:left-20 md:top-1/2 md:bottom-auto md:w-auto md:translate-x-0 md:-translate-y-1/2 md:px-0 md:text-left md:text-[48px] md:leading-tight"
       >
         Connecting Airlines to <br /> success. Africa’s <br /> Trusted Partner
       </motion.h1>

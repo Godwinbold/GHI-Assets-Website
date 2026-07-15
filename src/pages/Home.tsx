@@ -42,7 +42,6 @@ export default function Home() {
       <Hero />
       <Carousel />
       <WhyGHI />
-      <AviationStats />
       <TrustedPartner />
       <PartnershipBanner />
       <SolutionForAirline />
