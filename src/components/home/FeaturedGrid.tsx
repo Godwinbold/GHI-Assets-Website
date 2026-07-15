@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer, defaultViewport } from "../../lib/animations";
+
 export function FeaturesGrid() {
   const features = [
     {
@@ -27,11 +30,17 @@ export function FeaturesGrid() {
   ];
 
   return (
-    <div className="bg-white py-20 ">
-      <div className=" mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16">
+    <div className="bg-white py-20 overflow-hidden">
+      <div className="mx-auto">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          variants={staggerContainer(0.08)}
+          className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16 w-full"
+        >
           {features.map((feature) => (
-            <div key={feature.id} className="flex flex-col">
+            <motion.div key={feature.id} variants={fadeInUp} className="flex flex-col">
               <span className="text-4xl font-bold text-gray-100 mb-4 block">
                 {feature.id}
               </span>
@@ -41,10 +50,11 @@ export function FeaturesGrid() {
               <p className="text-gray-600 leading-relaxed text-sm md:text-base">
                 {feature.description}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
 }
+

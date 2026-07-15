@@ -29,6 +29,7 @@ const navItems = [
   { to: "/insights", label: "Insights" },
   { to: "/about", label: "About Us" },
   { to: "/contacts", label: "Contacts" },
+  { to: "/careers", label: "Aviation Training" },
 ];
 
 function App() {

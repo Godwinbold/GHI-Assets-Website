@@ -7,20 +7,21 @@ import { PartnershipBanner } from "../components/home/PartnerWithUs";
 import SolutionForAirline from "../components/home/SolutionForAirline";
 import TrustedPartner from "../components/home/TrustedPartner";
 import WhyGHI from "../components/home/WhyGHI";
+import AviationStats from "../components/home/AviationStats";
 
 export default function Home() {
-
   return (
     <div className="min-h-screen">
-      <Hero/>
-      <Carousel/>
-      <WhyGHI/>
-      <TrustedPartner/>
-     <PartnershipBanner/>
-     <SolutionForAirline/>
-     <MeetOurLeadership/>
-     <LatestInsight/>
-     <GetInTouch/>
+      <Hero />
+      <Carousel />
+      <WhyGHI />
+      <AviationStats />
+      <TrustedPartner />
+      <PartnershipBanner />
+      <SolutionForAirline />
+      <MeetOurLeadership />
+      <LatestInsight />
+      <GetInTouch />
     </div>
   );
 }

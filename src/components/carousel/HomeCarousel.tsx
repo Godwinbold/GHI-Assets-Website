@@ -1,15 +1,14 @@
-import  { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { services } from '../../constants/services';
 import ContainerHeader from '../home/ContainerHeader';
 import Wrapper from '../home/Wrapper';
 
-
 export default function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardOffset, setCardOffset] = useState(0);
-  const cardRef = useRef(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   // Calculate the exact width of a card plus its gap to ensure perfect scrolling,
   // making it responsive to different screen sizes.

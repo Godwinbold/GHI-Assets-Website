@@ -13,6 +13,8 @@ import PageHero from "../components/common/PageHero";
 import ContainerHeader from "../components/home/ContainerHeader";
 import Wrapper from "../components/home/Wrapper";
 import { courses, features } from "../constants/careers";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer, defaultViewport } from "../lib/animations";
 
 const iconMap: Record<string, LucideIcon> = {
   "graduation-cap": GraduationCap,
@@ -24,7 +26,7 @@ const iconMap: Record<string, LucideIcon> = {
 
 const Career = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <PageHero
         imageSrc={`/images/control_room.png`}
         imageAlt={"half world"}
@@ -36,20 +38,34 @@ const Career = () => {
       />
 
       <Wrapper className="grid grid-cols-1">
-        <ContainerHeader
-          title="WHY CHOOSE FRONTIER"
-          subtext="Benefit of Training with Frontier "
-          colorText="Academy"
-          helperText={`What distinguishes us is not just what we know, it's how we apply that knowledge to drive outcomes for our partners`}
-        />
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          variants={fadeInUp}
+        >
+          <ContainerHeader
+            title="WHY CHOOSE FRONTIER"
+            subtext="Benefit of Training with Frontier "
+            colorText="Academy"
+            helperText={`What distinguishes us is not just what we know, it's how we apply that knowledge to drive outcomes for our partners`}
+          />
+        </motion.div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-20">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          variants={staggerContainer(0.08)}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 lg:gap-10 w-full"
+        >
           {features.map((feature, index) => {
             const Icon = iconMap[feature.icon] || Check;
             return (
-              <div
+              <motion.div
                 key={index}
-                className="flex flex-col items-center justify-center gap-4 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-transform  duration-300 hover:-translate-y-1 hover:shadow-lg"
+                variants={fadeInUp}
+                className="flex flex-col items-center justify-center gap-4 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
                 <div className="flex h-14 w-14 items-center justify-center rounded bg-highlight text-white">
                   <Icon size={28} />
@@ -57,25 +73,39 @@ const Career = () => {
                 <p className="text-[#070B11] text-center font-semibold">
                   {feature.title}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </Wrapper>
       <Wrapper className="grid grid-cols-1 gap-12">
-        <ContainerHeader
-          className="lg:w-lg"
-          title="COURSES OFFERED"
-          subtext="Full Training"
-          colorText="Curriculum"
-          helperText={`Choose from IATA-certified programs, cargo management, and professional aviation skills training.`}
-        />
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          variants={fadeInUp}
+        >
+          <ContainerHeader
+            className="lg:w-lg"
+            title="COURSES OFFERED"
+            subtext="Full Training"
+            colorText="Curriculum"
+            helperText={`Choose from IATA-certified programs, cargo management, and professional aviation skills training.`}
+          />
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-5 gap-x-12">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          variants={staggerContainer(0.1)}
+          className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-6 gap-x-12 w-full"
+        >
           {courses.map((course, index) => (
-            <div
+            <motion.div
               key={index}
-              className="rounded-[28px]  border border-white/10 bg-brand px-8 pt-8 pb-15 shadow-[0_25px_80px_rgba(0,0,0,0.15)] transition-transform duration-300 hover:-translate-y-2"
+              variants={fadeInUp}
+              className="rounded-[28px] border border-white/10 bg-brand px-8 pt-8 pb-15 shadow-[0_25px_80px_rgba(0,0,0,0.15)] transition-all duration-300 hover:-translate-y-2"
             >
               <div className="mb-6 flex items-center justify-between gap-4">
                 <span className="rounded-full bg-highlight px-4 py-2 text-xs uppercase tracking-[0.28em] text-white">
@@ -98,12 +128,18 @@ const Career = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </Wrapper>
 
-      <section className="border border-white/10 bg-brand px-8 mb-15 py-10 shadow-[0_30px_80px_rgba(0,0,0,0.16)] text-white lg:px-12 lg:py-12">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={defaultViewport}
+        variants={fadeInUp}
+        className="border border-white/10 bg-brand px-8 mb-15 py-10 shadow-[0_30px_80px_rgba(0,0,0,0.16)] text-white lg:px-12 lg:py-12"
+      >
         <div className="grid gap-10 xl:grid-cols-[1.6fr_1fr] xl:items-center">
           <div>
             <h2 className="mt-4 text-3xl text-center md:text-left md:text-4xl font-semibold leading-tight text-white sm:text-5xl">
@@ -167,9 +203,10 @@ const Career = () => {
             <p className="mt-3 text-sm text-slate-300">Courses Programs</p>
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };
+
 
 export default Career;

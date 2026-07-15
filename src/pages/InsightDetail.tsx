@@ -1,6 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import PageHero from "../components/common/PageHero";
 import { insightsDetails } from "../constants/insights";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer, defaultViewport } from "../lib/animations";
 
 const imageAliases: Record<string, string> = {
   "hero-image-aircraft-tug-rainy": "/images/airplane2.png",
@@ -43,10 +45,16 @@ export default function InsightDetail() {
         social={true}
       />
 
-      <article className="mx-auto max-w-7xl px-6 py-14 md:px-10 lg:py-20">
-        <section className="space-y-10">
+      <article className="mx-auto max-w-7xl px-6 py-14 md:px-10 lg:py-20 overflow-hidden">
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          variants={staggerContainer(0.12)}
+          className="space-y-10"
+        >
           {insight.FIRST_SECTION.body.map((paragraph, index) => (
-            <div key={paragraph.slice(0, 40)} className="space-y-8">
+            <motion.div key={paragraph.slice(0, 40)} variants={fadeInUp} className="space-y-8">
               <p className="text-sm leading-7 text-copy md:text-[15px]">
                 {paragraph}
               </p>
@@ -54,42 +62,51 @@ export default function InsightDetail() {
                 <img
                   src={resolveImageSrc(insight.FIRST_SECTION.images[index])}
                   alt={`${insight.title} detail ${index + 1}`}
-                  className="h-84.5 w-full object-cover"
+                  className="h-84.5 w-full object-cover rounded-lg"
                 />
               )}
-            </div>
+            </motion.div>
           ))}
-        </section>
+        </motion.section>
 
-        <section className="mt-16 space-y-8 md:mt-24">
-          <div>
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          variants={staggerContainer(0.12)}
+          className="mt-16 space-y-8 md:mt-24"
+        >
+          <motion.div variants={fadeInUp}>
             <h2 className="text-xl font-bold text-brand md:text-2xl">
               {insight.SECOND_SECTION.title}
             </h2>
             <div className="mt-3 h-3 w-10 bg-brand" />
-          </div>
+          </motion.div>
 
           {insight.SECOND_SECTION.body.map((paragraph) => (
-            <p
+            <motion.p
               key={paragraph.slice(0, 40)}
+              variants={fadeInUp}
               className="text-sm leading-7 text-copy md:text-[15px]"
             >
               {paragraph}
-            </p>
+            </motion.p>
           ))}
 
           <div className="space-y-8">
             {insight.SECOND_SECTION.images.map((image, index) => (
-              <img
+              <motion.img
                 key={image}
+                variants={fadeInUp}
                 src={resolveImageSrc(image)}
                 alt={`${insight.SECOND_SECTION.title} detail ${index + 1}`}
-                className="h-84.5 w-full object-cover"
+                className="h-84.5 w-full object-cover rounded-lg"
               />
             ))}
           </div>
-        </section>
+        </motion.section>
       </article>
     </main>
   );
 }
+

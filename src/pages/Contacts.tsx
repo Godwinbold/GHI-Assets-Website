@@ -1,9 +1,11 @@
 import PageHero from "../components/common/PageHero";
 import Wrapper from "../components/home/Wrapper";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer, defaultViewport } from "../lib/animations";
 
 export default function Contacts() {
   return (
-    <div className="min-h-screen bg-surface">
+    <div className="min-h-screen bg-surface overflow-x-hidden">
       <PageHero
         imageSrc="/images/about-us.png"
         imageAlt="Shaping the Future of Nigeria Aviation"
@@ -12,9 +14,15 @@ export default function Contacts() {
       />
 
       <Wrapper className="grid grid-cols-1 bg-white">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-8 justify-between">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          variants={staggerContainer(0.15)}
+          className="flex flex-col lg:flex-row gap-12 lg:gap-8 justify-between w-full"
+        >
           {/* Left Side */}
-          <div className="flex-1 max-w-xl">
+          <motion.div variants={fadeInUp} className="flex-1 max-w-xl">
             <h3 className="text-sm font-semibold text-[#505D74] tracking-widest uppercase mb-4">
               Get in Touch
             </h3>
@@ -63,10 +71,13 @@ export default function Contacts() {
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Side - Form */}
-          <div className="w-full lg:max-w-[564px] bg-[#001233] rounded-lg p-8 lg:p-10 text-white">
+          <motion.div
+            variants={fadeInUp}
+            className="w-full lg:max-w-[564px] bg-[#001233] rounded-lg p-8 lg:p-10 text-white shadow-xl"
+          >
             <div className="mb-8">
               <h3 className="text-2xl font-semibold mb-2">Send an Enquiry</h3>
               <p className="text-white/80 text-sm">
@@ -166,9 +177,10 @@ export default function Contacts() {
                 and is never shared with third parties.
               </p>
             </form>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </Wrapper>
     </div>
   );
 }
+

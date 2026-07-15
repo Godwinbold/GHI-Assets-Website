@@ -1,6 +1,8 @@
 import ContainerHeader from "./ContainerHeader";
 import LeadershipCard from "./LeadershipCard";
 import Wrapper from "./Wrapper";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer, defaultViewport } from "../../lib/animations";
 
 const leaders = [
   {
@@ -25,22 +27,37 @@ A distinguished legal practitioner with over 35 years of experience in corporate
 
 const MeetOurLeadership = () => {
   return (
-    <Wrapper className="grid w-full gap-10">
-      <div className="w-full">
+    <Wrapper className="grid w-full gap-10 overflow-hidden">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={defaultViewport}
+        variants={fadeInUp}
+        className="w-full"
+      >
         <ContainerHeader
           className="md:w-140.25!"
           title="MEET OUR PEOPLE"
           subtext="Leadership Team"
         />
-      </div>
+      </motion.div>
 
-      <div className="w-full grid grid-cols-1 gap-10 md:grid-cols-2">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={defaultViewport}
+        variants={staggerContainer(0.12)}
+        className="w-full grid grid-cols-1 gap-10 md:grid-cols-2"
+      >
         {leaders.map((leader) => (
-          <LeadershipCard key={leader.name} {...leader} />
+          <motion.div key={leader.name} variants={fadeInUp}>
+            <LeadershipCard {...leader} />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </Wrapper>
   );
 };
 
 export default MeetOurLeadership;
+

@@ -1,8 +1,17 @@
+import { motion } from "framer-motion";
+import { slideInLeft, slideInRight, staggerContainer, defaultViewport } from "../../lib/animations";
+
 const FeaturedInsight = () => {
   return (
-    <section className="bg-[#F7F9FC] px-6 py-20 md:px-10 lg:px-20 lg:py-24">
-      <div className="mx-auto grid max-w-319.5 items-center gap-12 lg:grid-cols-[360px_1fr] lg:gap-28">
-        <article className="max-w-118">
+    <section className="bg-[#F7F9FC] px-6 py-20 md:px-10 lg:px-20 lg:py-24 overflow-hidden">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={defaultViewport}
+        variants={staggerContainer(0.15)}
+        className="mx-auto grid max-w-319.5 items-center gap-12 lg:grid-cols-[360px_1fr] lg:gap-28 w-full"
+      >
+        <motion.article variants={slideInLeft} className="max-w-118">
           <span className="inline-flex rounded-full bg-[#EEF1F7] px-5 py-2 text-[10px] font-medium uppercase tracking-[0.08em] text-brand">
             Sales & Distributions
           </span>
@@ -23,22 +32,23 @@ const FeaturedInsight = () => {
 
           <button
             type="button"
-            className="mt-14 h-15 w-48.25 rounded-md bg-brand text-xs font-bold uppercase tracking-[0.04em] text-white transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            className="mt-14 h-15 w-48.25 rounded-md bg-brand text-xs font-bold uppercase tracking-[0.04em] text-white transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand cursor-pointer"
           >
             See More
           </button>
-        </article>
+        </motion.article>
 
-        <div className="overflow-hidden rounded-lg">
+        <motion.div variants={slideInRight} className="overflow-hidden rounded-lg">
           <img
             src="/images/airplane2.png"
             alt="Ground handling team servicing an aircraft"
-            className="h-65 w-full object-cover object-center md:h-80"
+            className="h-65 w-full object-cover object-center md:h-80 hover:scale-105 transition-transform duration-500"
           />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
-  )
-}
+  );
+};
 
-export default FeaturedInsight
+export default FeaturedInsight;
+

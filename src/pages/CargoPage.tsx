@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer, defaultViewport } from "../lib/animations";
 
 const SPECIALTY_META = {
   general: { label: "General Cargo", icon: "box" },
@@ -114,8 +116,8 @@ function CargoIcon({ name, className = "h-4 w-4" }: { name: string; className?: 
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
     className,
-    "aria-hidden": "true",
-    focusable: "false",
+    "aria-hidden": "true" as const,
+    focusable: "false" as const,
   };
 
   switch (name) {
@@ -214,42 +216,6 @@ function CargoMedia({ src, alt, iata, dark = false }: { src: string; alt: string
   );
 }
 
-function useSectionTracking(id: string, onActiveChange: (id: string) => void) {
-  const ref = useRef<HTMLElement>(null);
-  const [revealed, setRevealed] = useState(false);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-
-    if (typeof IntersectionObserver === "undefined") {
-      setRevealed(true);
-      return;
-    }
-
-    const revealObserver = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setRevealed(true);
-          revealObserver.unobserve(node);
-        }
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
-    );
-    revealObserver.observe(node);
-
-    const activeObserver = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) onActiveChange(id); },
-      { threshold: 0, rootMargin: "-40% 0px -50% 0px" }
-    );
-    activeObserver.observe(node);
-
-    return () => { revealObserver.disconnect(); activeObserver.disconnect(); };
-  }, [id, onActiveChange]);
-
-  return [ref, revealed] as const;
-}
-
 function Waybill({ iata, hub, dark = false }: { iata: string; hub: string; dark?: boolean }) {
   return (
     <p className={`mb-4 flex items-center gap-3 font-mono text-xs tracking-wide ${dark ? "text-white/60" : "text-slate-500"}`}>
@@ -297,13 +263,16 @@ function CtaButton({ cta, dark = false }: { cta: { label: string; href: string }
   );
 }
 
-function CompactCarrier({ partner, reversed, forwardedRef, revealed }: any) {
+function CompactCarrier({ partner, reversed }: any) {
   return (
-    <article
-      ref={forwardedRef}
+    <motion.article
       id={partner.id}
       aria-labelledby={`${partner.id}-heading`}
-      className={`grid items-center gap-8 rounded-sm bg-slate-50 p-8 sm:p-10 md:grid-cols-[0.8fr_1fr] md:gap-10 motion-safe:transition-all motion-safe:duration-700 motion-safe:ease-out ${revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={defaultViewport}
+      variants={fadeInUp}
+      className="grid items-center gap-8 rounded-sm bg-slate-50 p-8 sm:p-10 md:grid-cols-[0.8fr_1fr] md:gap-10 overflow-hidden"
     >
       <div className={`group ${reversed ? "md:order-2" : "md:order-1"}`}>
         <CargoMedia src={partner.image} alt={`${partner.name} aircraft and ground handling operations`} iata={partner.iata} />
@@ -322,17 +291,20 @@ function CompactCarrier({ partner, reversed, forwardedRef, revealed }: any) {
         <Advantages items={partner.advantages} />
         <CtaButton cta={partner.cta} />
       </div>
-    </article>
+    </motion.article>
   );
 }
 
-function StandardCarrier({ partner, reversed, forwardedRef, revealed }: any) {
+function StandardCarrier({ partner, reversed }: any) {
   return (
-    <article
-      ref={forwardedRef}
+    <motion.article
       id={partner.id}
       aria-labelledby={`${partner.id}-heading`}
-      className={`group grid items-center gap-10 border-t border-slate-200 py-14 first:border-t-0 sm:py-16 md:grid-cols-2 md:gap-14 motion-safe:transition-all motion-safe:duration-700 motion-safe:ease-out ${revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={defaultViewport}
+      variants={fadeInUp}
+      className="group grid items-center gap-10 border-t border-slate-200 py-14 first:border-t-0 sm:py-16 md:grid-cols-2 md:gap-14 overflow-hidden"
     >
       <div className={reversed ? "md:order-2" : "md:order-1"}>
         <CargoMedia src={partner.image} alt={`${partner.name} aircraft and ground handling operations`} iata={partner.iata} />
@@ -364,17 +336,20 @@ function StandardCarrier({ partner, reversed, forwardedRef, revealed }: any) {
         <Advantages items={partner.advantages} />
         <CtaButton cta={partner.cta} />
       </div>
-    </article>
+    </motion.article>
   );
 }
 
-function FeatureCarrier({ partner, forwardedRef, revealed }: any) {
+function FeatureCarrier({ partner }: any) {
   return (
-    <article
-      ref={forwardedRef}
+    <motion.article
       id={partner.id}
       aria-labelledby={`${partner.id}-heading`}
-      className={`group mt-14 overflow-hidden rounded-sm bg-slate-900 text-white motion-safe:transition-all motion-safe:duration-700 motion-safe:ease-out sm:mt-16 ${revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={defaultViewport}
+      variants={fadeInUp}
+      className="group mt-14 overflow-hidden rounded-sm bg-slate-900 text-white sm:mt-16"
     >
       <div className="grid items-center gap-10 p-8 sm:p-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:p-16">
         <div>
@@ -398,17 +373,16 @@ function FeatureCarrier({ partner, forwardedRef, revealed }: any) {
           <CargoMedia src={partner.image} alt={`${partner.name} aircraft and ground handling operations`} iata={partner.iata} dark />
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
-function CarrierEntry({ partner, index, onActiveChange }: any) {
-  const [ref, revealed] = useSectionTracking(partner.id, onActiveChange);
+function CarrierEntry({ partner, index }: any) {
   const reversed = index % 2 === 1;
 
-  if (partner.layout === "feature") return <FeatureCarrier partner={partner} forwardedRef={ref} revealed={revealed} />;
-  if (partner.layout === "compact") return <CompactCarrier partner={partner} reversed={reversed} forwardedRef={ref} revealed={revealed} />;
-  return <StandardCarrier partner={partner} reversed={reversed} forwardedRef={ref} revealed={revealed} />;
+  if (partner.layout === "feature") return <FeatureCarrier partner={partner} />;
+  if (partner.layout === "compact") return <CompactCarrier partner={partner} reversed={reversed} />;
+  return <StandardCarrier partner={partner} reversed={reversed} />;
 }
 
 function ManifestIndex({ activeId }: { activeId: string }) {
@@ -429,13 +403,19 @@ function ManifestIndex({ activeId }: { activeId: string }) {
 }
 
 export default function CargoPage() {
-  const [activeId, setActiveId] = useState(CARGO_PARTNERS[0].id);
-  const handleActiveChange = useCallback((id: string) => setActiveId(id), []);
+  const [activeId] = useState(CARGO_PARTNERS[0].id);
 
   return (
-    <div className="mx-auto max-w-[1180px] px-5 sm:px-8">
-      <section aria-labelledby="cargo-hero-heading" className="grid items-center gap-10 py-16 sm:py-20 md:grid-cols-[1.1fr_0.9fr] md:gap-16 lg:py-24">
-        <div>
+    <div className="mx-auto max-w-[1180px] px-5 sm:px-8 overflow-hidden">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={defaultViewport}
+        variants={staggerContainer(0.12)}
+        aria-labelledby="cargo-hero-heading"
+        className="grid items-center gap-10 py-16 sm:py-20 md:grid-cols-[1.1fr_0.9fr] md:gap-16 lg:py-24"
+      >
+        <motion.div variants={fadeInUp}>
           <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Air Freight Network</p>
           <h1 id="cargo-hero-heading" className="mb-5 max-w-[16ch] text-4xl font-semibold leading-[1.08] tracking-tight text-slate-900 sm:text-5xl">
             Cargo that keeps the world's supply chains moving
@@ -457,8 +437,12 @@ export default function CargoPage() {
               <dd className="font-mono text-lg font-semibold text-slate-900">General → Dangerous Goods</dd>
             </div>
           </dl>
-        </div>
-        <div aria-hidden="true" className="relative min-h-[160px] opacity-70 md:min-h-[220px] md:opacity-100">
+        </motion.div>
+        <motion.div
+          variants={fadeInUp}
+          aria-hidden="true"
+          className="relative min-h-[160px] opacity-70 md:min-h-[220px] md:opacity-100"
+        >
           <svg viewBox="0 0 360 320" className="h-auto w-full overflow-visible">
             <g className="text-amber-600/60" fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 6" strokeLinecap="round">
               <path d="M40 260 C 120 180, 160 120, 260 60" />
@@ -469,14 +453,14 @@ export default function CargoPage() {
               <circle key={i} cx={cx} cy={cy} r="4" className="fill-slate-900" />
             ))}
           </svg>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       <ManifestIndex activeId={activeId} />
 
-      <section aria-label="Cargo carrier partners" className="pb-16 sm:pb-20 lg:pb-24">
+      <section aria-label="Cargo carrier partners" className="pb-16 sm:pb-20 lg:pb-24 grid gap-12">
         {CARGO_PARTNERS.map((partner, index) => (
-          <CarrierEntry partner={partner} index={index} onActiveChange={handleActiveChange} key={partner.id} />
+          <CarrierEntry partner={partner} index={index} key={partner.id} />
         ))}
       </section>
     </div>

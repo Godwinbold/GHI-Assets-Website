@@ -3,6 +3,8 @@ import { Clock, Globe, Shield, TrendingUp } from 'lucide-react';
 import ContainerHeader from './ContainerHeader'
 import { ServiceCard } from './ServiceCard'
 import Wrapper from './Wrapper'
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer, defaultViewport } from "../../lib/animations";
 
 const WhyGHI = () => {
     const services = [
@@ -28,26 +30,42 @@ const WhyGHI = () => {
     }
   ];
   return (
-    <Wrapper className='bg-brand grid grid-cols-1 '>
-      <ContainerHeader
-      title='Why GHI'
-      subtext='Built for the Complexity of the '
-      colorText='Aviation'
-      helperText={`What distinguishes us is not just what we know, it's how we apply that knowledge to drive outcomes for our partners`}
-      changeColor/>
+    <Wrapper className='bg-brand grid grid-cols-1 overflow-hidden'>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={defaultViewport}
+        variants={fadeInUp}
+      >
+        <ContainerHeader
+          title='Why GHI'
+          subtext='Built for the Complexity of the '
+          colorText='Aviation'
+          helperText={`What distinguishes us is not just what we know, it's how we apply that knowledge to drive outcomes for our partners`}
+          changeColor
+        />
+      </motion.div>
 
-       <div className="grid grid-cols-1 md:h-102.5 md:grid-cols-2 lg:grid-cols-4 gap-6">
+       <motion.div
+         initial="hidden"
+         whileInView="visible"
+         viewport={defaultViewport}
+         variants={staggerContainer(0.08)}
+         className="grid grid-cols-1 md:h-102.5 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full"
+       >
           {services.map((service, index) => (
-            <ServiceCard 
-              key={index}
-              title={service.title}
-              description={service.description}
-              icon={service.icon}
-            />
+            <motion.div key={index} variants={fadeInUp}>
+              <ServiceCard 
+                title={service.title}
+                description={service.description}
+                icon={service.icon}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
     </Wrapper>
   )
 }
 
 export default WhyGHI
+

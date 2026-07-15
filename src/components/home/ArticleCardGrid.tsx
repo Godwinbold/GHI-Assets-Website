@@ -1,5 +1,7 @@
 
 import ArticleCard from "./ArticleCard"
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer, defaultViewport } from "../../lib/animations";
 
 const articles = [
   {
@@ -33,12 +35,20 @@ const articles = [
 
 const ArticleCardGrid = () => {
   return (
-    <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 ">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={defaultViewport}
+      variants={staggerContainer(0.08)}
+      className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 w-full"
+    >
       {articles.map((article) => (
-        <ArticleCard key={article.href} {...article} />
+        <motion.div key={article.href} variants={fadeInUp}>
+          <ArticleCard {...article} />
+        </motion.div>
       ))}
-    </section>
+    </motion.section>
   )
 }
 
-export default ArticleCardGrid
+export default ArticleCardGrid
