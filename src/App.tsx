@@ -28,7 +28,6 @@ const navItems = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
   { to: "/cargo", label: "Cargo" },
-  { to: "/insights", label: "Insights" },
   { to: "/about", label: "About Us" },
   { to: "/contacts", label: "Contacts" },
   { to: "/careers", label: "Aviation Training" },

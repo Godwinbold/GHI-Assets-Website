@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer, defaultViewport } from "../lib/animations";
+import CargoContactModal from "../components/cargo/CargoContactModal";
 
 const SPECIALTY_META = {
   general: { label: "General Cargo", icon: "box" },
@@ -28,7 +29,7 @@ const CARGO_PARTNERS = [
       "Dedicated perishables handling for agricultural exporters",
       "Growing frequency across the West Africa feeder network",
     ],
-    cta: { label: "Request Cargo Quote", href: "#cargo-quote" },
+    cta: { label: "Contact Cargo Team", href: "#cargo-contact" },
   },
   {
     id: "united-cargo",
@@ -67,7 +68,7 @@ const CARGO_PARTNERS = [
       "Established pharma handling protocols for cross-border shipments",
       "Heavy-lift capacity for mining and energy sector equipment",
     ],
-    cta: { label: "Explore Services", href: "#cargo-services" },
+    cta: { label: "Contact Cargo Team", href: "#cargo-contact" },
   },
   {
     id: "rwandair-cargo",
@@ -85,7 +86,7 @@ const CARGO_PARTNERS = [
       "Expanding regional feeder network across East and Central Africa",
       "Hands-on handling for smaller-volume shippers",
     ],
-    cta: { label: "Request Cargo Quote", href: "#cargo-quote" },
+    cta: { label: "Contact Cargo Team", href: "#cargo-contact" },
   },
   {
     id: "turkish-airlines-cargo",
@@ -254,7 +255,19 @@ function Advantages({ items, dark = false }: { items: string[]; dark?: boolean }
   );
 }
 
-function CtaButton({ cta, dark = false }: { cta: { label: string; href: string }; dark?: boolean }) {
+function CtaButton({ cta, dark = false, onClick }: { cta: { label: string; href: string }; dark?: boolean; onClick?: () => void }) {
+  if (onClick) {
+    return (
+      <button
+        type="button"
+        onClick={onClick}
+        className={`inline-flex items-center gap-2 rounded-sm px-6 py-3 text-sm font-semibold transition-all hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${dark ? "bg-amber-400 text-slate-900 hover:bg-amber-300 focus-visible:ring-amber-300 focus-visible:ring-offset-slate-900" : "bg-slate-900 text-white hover:bg-slate-800 focus-visible:ring-amber-500"}`}
+      >
+        {cta.label}
+        <span aria-hidden="true">→</span>
+      </button>
+    );
+  }
   return (
     <a href={cta.href} className={`inline-flex items-center gap-2 rounded-sm px-6 py-3 text-sm font-semibold transition-all hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${dark ? "bg-amber-400 text-slate-900 hover:bg-amber-300 focus-visible:ring-amber-300 focus-visible:ring-offset-slate-900" : "bg-slate-900 text-white hover:bg-slate-800 focus-visible:ring-amber-500"}`}>
       {cta.label}
@@ -263,7 +276,7 @@ function CtaButton({ cta, dark = false }: { cta: { label: string; href: string }
   );
 }
 
-function CompactCarrier({ partner, reversed }: any) {
+function CompactCarrier({ partner, reversed, onContactClick }: any) {
   return (
     <motion.article
       id={partner.id}
@@ -289,13 +302,13 @@ function CompactCarrier({ partner, reversed }: any) {
           ))}
         </p>
         <Advantages items={partner.advantages} />
-        <CtaButton cta={partner.cta} />
+        <CtaButton cta={partner.cta} onClick={partner.cta.label === "Contact Cargo Team" ? onContactClick : undefined} />
       </div>
     </motion.article>
   );
 }
 
-function StandardCarrier({ partner, reversed }: any) {
+function StandardCarrier({ partner, reversed, onContactClick }: any) {
   return (
     <motion.article
       id={partner.id}
@@ -334,13 +347,13 @@ function StandardCarrier({ partner, reversed }: any) {
           </div>
         )}
         <Advantages items={partner.advantages} />
-        <CtaButton cta={partner.cta} />
+        <CtaButton cta={partner.cta} onClick={partner.cta.label === "Contact Cargo Team" ? onContactClick : undefined} />
       </div>
     </motion.article>
   );
 }
 
-function FeatureCarrier({ partner }: any) {
+function FeatureCarrier({ partner, onContactClick }: any) {
   return (
     <motion.article
       id={partner.id}
@@ -367,7 +380,7 @@ function FeatureCarrier({ partner }: any) {
             </ol>
           </div>
           <Advantages items={partner.advantages} dark />
-          <CtaButton cta={partner.cta} dark />
+          <CtaButton cta={partner.cta} dark onClick={partner.cta.label === "Contact Cargo Team" ? onContactClick : undefined} />
         </div>
         <div className="group">
           <CargoMedia src={partner.image} alt={`${partner.name} aircraft and ground handling operations`} iata={partner.iata} dark />
@@ -377,12 +390,12 @@ function FeatureCarrier({ partner }: any) {
   );
 }
 
-function CarrierEntry({ partner, index }: any) {
+function CarrierEntry({ partner, index, onContactClick }: any) {
   const reversed = index % 2 === 1;
 
-  if (partner.layout === "feature") return <FeatureCarrier partner={partner} />;
-  if (partner.layout === "compact") return <CompactCarrier partner={partner} reversed={reversed} />;
-  return <StandardCarrier partner={partner} reversed={reversed} />;
+  if (partner.layout === "feature") return <FeatureCarrier partner={partner} onContactClick={onContactClick} />;
+  if (partner.layout === "compact") return <CompactCarrier partner={partner} reversed={reversed} onContactClick={onContactClick} />;
+  return <StandardCarrier partner={partner} reversed={reversed} onContactClick={onContactClick} />;
 }
 
 function ManifestIndex({ activeId }: { activeId: string }) {
@@ -404,9 +417,11 @@ function ManifestIndex({ activeId }: { activeId: string }) {
 
 export default function CargoPage() {
   const [activeId] = useState(CARGO_PARTNERS[0].id);
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div className="mx-auto max-w-[1180px] px-5 sm:px-8 overflow-hidden">
+      <CargoContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
       <motion.section
         initial="hidden"
         whileInView="visible"
@@ -460,7 +475,7 @@ export default function CargoPage() {
 
       <section aria-label="Cargo carrier partners" className="pb-16 sm:pb-20 lg:pb-24 grid gap-12">
         {CARGO_PARTNERS.map((partner, index) => (
-          <CarrierEntry partner={partner} index={index} key={partner.id} />
+          <CarrierEntry partner={partner} index={index} key={partner.id} onContactClick={() => setModalOpen(true)} />
         ))}
       </section>
     </div>
