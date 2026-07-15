@@ -31,7 +31,6 @@ export const AIRLINES = [
     email: 'angola@apgng.com',
     phone: '+2348138158885',
     videoUrl: '/videos/Taag Angola.mp4',
-    imageUrl: '/images/airplane-4.png'
   },
   {
     id: 4,
