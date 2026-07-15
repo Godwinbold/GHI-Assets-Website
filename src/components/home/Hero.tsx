@@ -12,7 +12,7 @@ const Hero = () => {
   });
 
   // Create parallax scroll transforms
-  const yVideo = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
+  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
   const yText = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
   const opacityText = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
   const scaleText = useTransform(scrollYProgress, [0, 0.85], [1, 0.95]);
@@ -22,18 +22,12 @@ const Hero = () => {
       ref={containerRef} 
       className="relative w-full mx-auto h-screen overflow-hidden bg-[#00205b]"
     >
-      {/* Parallax Background Video */}
-      <motion.video
-        style={{ y: yVideo }}
+      {/* Parallax Background Image */}
+      <motion.img
+        style={{ y: yBg }}
         className="absolute inset-0 h-full w-full object-cover"
-        src="/video/ghihero.mp4"
-        poster="/images/poster.png"
-        preload="auto"
-        autoPlay
-        loop
-        muted
-        playsInline
-        aria-hidden="true"
+        src="/images/hero_aviation_bg.png"
+        alt="Premium Commercial Jet Airliner at GHI Gate"
       />
       
       {/* Dark overlay for readability */}

@@ -3,6 +3,7 @@ import PageHero from "../components/common/PageHero";
 import { insightsDetails } from "../constants/insights";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer, defaultViewport } from "../lib/animations";
+import SEO from "../components/common/SEO";
 
 const imageAliases: Record<string, string> = {
   "hero-image-aircraft-tug-rainy": "/images/airplane2.png",
@@ -35,14 +36,43 @@ export default function InsightDetail() {
     );
   }
 
+  const articleTitle = insight.title;
+  const articleDescription = (insight.SECOND_SECTION.body[0] || insight.FIRST_SECTION.body[0] || "").slice(0, 155) + "...";
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": insight.title,
+    "image": [
+      insight.image.startsWith("http") ? insight.image : `https://ghiassets.com${insight.image}`
+    ],
+    "datePublished": insight.date,
+    "publisher": {
+      "@type": "Organization",
+      "name": "GHI Assets Limited",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ghiassets.com/images/logo.png"
+      }
+    }
+  };
+
   return (
     <main className="min-h-screen bg-[#f6f8fb]">
+      <SEO
+        title={articleTitle}
+        description={articleDescription}
+        image={insight.image}
+        type="article"
+        schema={articleSchema}
+      />
       <PageHero
         imageSrc={insight.image}
         imageAlt={insight.title}
         timeDate={`${insight.date} - ${insight.readTime}`}
         title={insight.title}
         social={true}
+
       />
 
       <article className="mx-auto max-w-7xl px-6 py-14 md:px-10 lg:py-20 overflow-hidden">

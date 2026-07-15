@@ -6,11 +6,29 @@ import FeaturedInsight from "../components/insights/FeaturedInsight";
 import { articles } from "../constants/insights";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer, defaultViewport } from "../lib/animations";
+import SEO from "../components/common/SEO";
 
 const Insights = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "GHI Assets Aviation Insights",
+    "description": "Explore the inspiring world of GHI Assets Limited through our stories, aviation industry news, and updates.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "GHI Assets Limited"
+    }
+  };
+
   return (
     <div className="min-h-screen overflow-x-hidden">
+      <SEO
+        title="Industry News & Updates | Aviation Insights"
+        description="Stay up to date with GHI Assets Limited's aviation insights, news articles, and business updates regarding aviation training, ground handling, and cargo in West Africa."
+        schema={schema}
+      />
       <PageHero
+
         imageSrc={`/images/half_world.png`}
         imageAlt={"half world"}
         title="Industry News  & Updates"

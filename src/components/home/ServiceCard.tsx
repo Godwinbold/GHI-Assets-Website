@@ -22,7 +22,7 @@ export const ServiceCard = ({
 
       {/* Icon Container with hover state background change */}
       <div className="relative z-10 w-14 h-14 mb-8 flex items-center justify-center rounded-lg bg-blue-50 text-brand transition-all duration-300 group-hover:bg-highlight group-hover:text-white text-highlight">
-        {React.cloneElement(icon, { size: 28, strokeWidth: 1.5 })}
+        {React.cloneElement(icon as React.ReactElement<any>, { size: 28, strokeWidth: 1.5 })}
       </div>
 
       {/* Text Content */}

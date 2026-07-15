@@ -7,11 +7,29 @@ import { OurServices } from '../components/services/OurServices'
 import { servicespage } from '../constants/services'
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer, defaultViewport } from '../lib/animations'
+import SEO from '../components/common/SEO'
 
 const Services = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Aviation Services & Solutions",
+    "provider": {
+      "@type": "Organization",
+      "name": "GHI Assets Limited"
+    },
+    "description": "GHI Assets Limited delivers precision-engineered aviation consultancy from route development to cargo operations."
+  };
+
   return (
     <main className="overflow-x-hidden">
+      <SEO
+        title="Key Services & Solutions | Connective Framework of Modern Aviation"
+        description="Explore our specialized aviation services including cargo solutions, route development support, aviation training, sales and distribution services, and airport supervision."
+        schema={schema}
+      />
       <PageHero
+
         imageSrc="/images/services-bg.png"
         imageAlt="Aircraft cargo operations at airport"
         title={"Key Services &\nSolutions"}

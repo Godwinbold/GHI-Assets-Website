@@ -6,11 +6,30 @@ import Wrapper from "../components/home/Wrapper";
 import { about_services } from "../constants/about";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer, defaultViewport } from "../lib/animations";
+import SEO from "../components/common/SEO";
 
 export default function About() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About GHI Assets Limited",
+    "description": "GHI Assets Limited is a diversified aviation investment and holding company incorporated in 2004, acting as a strategic anchor for specialized aviation services in West Africa.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "GHI Assets Limited",
+      "logo": "https://ghiassets.com/images/logo.png"
+    }
+  };
+
   return (
     <main className="min-h-screen overflow-x-hidden ">
+      <SEO
+        title="About Us | Shaping the Future of Nigeria Aviation"
+        description="GHI Assets Limited is a diversified aviation investment and holding company incorporated under Nigeria law in 2004. With over two decades of industry presence, GHI has established itself as a trusted partner."
+        schema={schema}
+      />
       <PageHero
+
         imageSrc="/images/about-us.png"
         imageAlt="Shaping the Future of Nigeria Aviation"
         title={"Shaping the Future  &\nof Nigeria Aviation"}

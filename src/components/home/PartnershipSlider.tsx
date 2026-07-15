@@ -5,11 +5,12 @@ import { AIRLINES } from "../../constants/partners";
 import { FlipCard } from "../carousel/FlipCard";
 
 export default function PartnershipSlider() {
-  const scrollContainerRef = useRef(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
-  const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const autoScrollIntervalRef = useRef<any>(null);
+
 
   const checkScrollability = () => {
     if (scrollContainerRef.current) {
