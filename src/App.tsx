@@ -12,6 +12,7 @@ import Contacts from "./pages/Contacts";
 import Footer from "./components/home/Footer";
 import Partners from "./pages/Partners";
 import Career from "./pages/Career";
+import CargoPage from "./pages/CargoPage";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -26,6 +27,7 @@ function ScrollToTop() {
 const navItems = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
+  { to: "/cargo", label: "Cargo" },
   { to: "/insights", label: "Insights" },
   { to: "/about", label: "About Us" },
   { to: "/contacts", label: "Contacts" },
@@ -152,6 +154,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/careers" element={<Career />} />
+        <Route path="/cargo" element={<CargoPage />} />
       </Routes>
       <Footer />
       {showTopButton && (
