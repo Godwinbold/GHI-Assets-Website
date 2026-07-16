@@ -39,7 +39,10 @@ export const PartnershipBanner = () => {
 
           <button
             className="bg-white text-brand cursor-pointer py-4 px-10 rounded-lg hover:bg-gray-100 transition-colors duration-200 tracking-wide text-sm uppercase"
-            onClick={() => console.log("Partnering...")}
+            onClick={() => {
+              const el = document.getElementById("get-in-touch");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             Partner With Us
           </button>

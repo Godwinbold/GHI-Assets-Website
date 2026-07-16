@@ -1,8 +1,8 @@
 import { type ReactNode } from 'react'
 
-const Wrapper = ({className, children}: {className:string; children: ReactNode}) => {
+const Wrapper = ({className, children, id}: {className:string; children: ReactNode; id?: string}) => {
   return (
-    <div className={` flex items-center py-12 px-6 lg:px-20 ${className}  overflow-hidden`}>
+    <div id={id} className={` flex items-center py-12 px-6 lg:px-20 ${className}  overflow-hidden`}>
       {children}
     </div>
   )

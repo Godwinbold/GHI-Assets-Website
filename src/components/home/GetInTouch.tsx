@@ -7,7 +7,7 @@ import { fadeInUp, defaultViewport } from "../../lib/animations"
 
 const GetInTouch = () => {
   return (
-    <Wrapper className='py-4 grid grid-cols-1 md:grid-cols-2 items-start gap-10 overflow-hidden'>
+    <Wrapper id="get-in-touch" className='py-4 grid grid-cols-1 md:grid-cols-2 items-start gap-10 overflow-hidden'>
       <motion.div
         initial="hidden"
         whileInView="visible"

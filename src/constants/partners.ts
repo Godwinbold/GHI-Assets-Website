@@ -57,8 +57,8 @@ export const AIRLINES = [
     id: 6,
     title: "Air Coted'Ivore",
     subtitle: 'Airline Representative West Africa (ARWA)',
-    company: "Air Coted'Ivore",
-    description: "Say yes to the world. Air Coted'Ivore excellence in the skies with premium connections across all continents.",
+    company: "Air Cote d'Ivoire",
+    description: "Say yes to the world. Air Cote d'Ivoire excellence in the skies with premium connections across all continents.",
     email: 'Aircotedivoirelos@aircotedivoire.com',
     phone: '+234 801 235 5555',
     imageUrl: '/images/airplane5.png'
