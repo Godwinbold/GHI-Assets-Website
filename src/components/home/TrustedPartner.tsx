@@ -15,7 +15,7 @@ const TrustedPartner = () => {
       >
         <ContainerHeader
           className="w-140.25!"
-          title="TRUSTED PARTNERSHIP"
+          title="Our Trusted Airline Partners"
           subtext={
             <>
               Built for Airlines. <br />

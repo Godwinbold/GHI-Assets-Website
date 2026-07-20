@@ -5,9 +5,6 @@ import {
   Briefcase,
   Check,
   Clock,
-  Phone,
-  Mail,
-  Award,
 } from "lucide-react";
 import PageHero from "../components/common/PageHero";
 import ContainerHeader from "../components/home/ContainerHeader";
@@ -55,9 +52,6 @@ const Career = () => {
         imageAlt={"half world"}
         title="Career in Travels, Tourism & Aviation"
         description="Professional training for aspiring aviation professionals across Nigeria."
-        buttonAvailable
-        buttonLabel="Enrol Now"
-        buttonLink="job-form"
       />
 
       <Wrapper className="grid grid-cols-1">
@@ -156,77 +150,64 @@ const Career = () => {
         </motion.div>
       </Wrapper>
 
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={defaultViewport}
-        variants={fadeInUp}
-        className="border border-white/10 bg-brand px-8 mb-15 py-10 shadow-[0_30px_80px_rgba(0,0,0,0.16)] text-white lg:px-12 lg:py-12"
+      <section
+        id="contact"
+        aria-labelledby="fa-contact-heading"
+        className="scroll-mt-20 px-8 mb-15 py-14 sm:py-16 lg:px-12"
       >
-        <div className="grid gap-10 xl:grid-cols-[1.6fr_1fr] xl:items-center">
+        {/* Enrol CTA banner */}
+        <div id="job-form" className="mb-12 rounded-sm bg-sky-600 px-8 py-12 text-white sm:px-12 sm:py-16">
+          <h2
+            id="fa-contact-heading"
+            className="mb-3 max-w-[20ch] text-3xl font-semibold tracking-tight"
+          >
+            Start Your Aviation Career Journey Today
+          </h2>
+          <p className="mb-7 max-w-[46ch] text-white/85">
+            Speak with our admissions team about the right program for your
+            goals, or enrol directly in an upcoming intake.
+          </p>
+          <a
+            href="mailto:info@frontieracademy.com.ng"
+            className="inline-flex items-center rounded-sm bg-amber-500 px-6 py-3 text-sm font-semibold text-blue-950 transition-colors hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-sky-600"
+          >
+            Enrol Now
+          </a>
+        </div>
+
+        {/* Contact details row */}
+        <div className="grid gap-8 border-t border-slate-200 pt-8 text-sm text-slate-600 sm:grid-cols-3">
+          <address className="not-italic">
+            <span className="block">Frontier Academy</span>
+            <span className="block">45 Oduduwa Way, Ikeja GRA,</span>
+            <span className="block">Lagos, Nigeria.</span>
+          </address>
+
+          <a
+            href="tel:+2347067125892"
+            className="hover:text-brand transition-colors"
+          >
+            +234 706 712 5892
+          </a>
+
           <div>
-            <h2 className="mt-4 text-3xl text-center md:text-left md:text-4xl font-semibold leading-tight text-white sm:text-5xl">
-              Ready to launch your <br /> Aviation Career?
-            </h2>
-            <p className="mt-6 max-w-2xl text-base text-slate-300 sm:text-lg">
-              Join hundreds of professionals trained at Frontier Academy. Enroll
-              today and take the first step.
-            </p>
             <a
-              href="#job-form"
-              className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-[#061847] shadow-lg shadow-black/10 transition hover:bg-slate-100"
+              href="mailto:info@frontieracademy.com.ng"
+              className="block hover:text-brand transition-colors"
             >
-              Enroll Now
+              info@frontieracademy.com.ng
+            </a>
+            <a
+              href="https://frontieracademy.com.ng"
+              target="_blank"
+              rel="noreferrer"
+              className="block hover:text-brand transition-colors"
+            >
+              frontieracademy.com.ng
             </a>
           </div>
-
-          <div className="rounded-[28px] border border-white/10 bg-[#001B4D] p-4 md:p-8">
-            <p className="text-sm uppercase tracking-[0.24em] text-slate-400">
-              Or reach us directly
-            </p>
-            <div className="mt-6 space-y-4">
-              <div className="flex items-center gap-4 rounded-3xl bg-slate-900/70 p-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-3xl bg-white/10 text-white">
-                  <Phone size={18} />
-                </div>
-                <p className="text-sm text-slate-200">+234 706 712 5892</p>
-              </div>
-              <div className="flex items-center gap-4 rounded-3xl bg-slate-900/70 p-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-3xl bg-white/10 text-white">
-                  <Mail size={18} />
-                </div>
-                <p className="text-sm text-slate-200">
-                  info@frontieracademy.com.ng
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
-
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          <div className="rounded relative pt-25 bg-[#001B4D] p-8">
-            <div className="mb-5 flex h-12 absolute right-3 top-3 w-12 items-center justify-center rounded-3xl bg-white/10 text-white">
-              <Award size={20} />
-            </div>
-            <p className="text-4xl font-semibold text-white">100%</p>
-            <p className="mt-3 text-sm text-slate-300">Job Support</p>
-          </div>
-          <div className="rounded relative pt-25 bg-[#001B4D] p-8">
-            <div className="mb-5 flex h-12 absolute right-3 top-3 w-12 items-center justify-center rounded-3xl bg-white/10 text-white">
-              <GraduationCap size={20} />
-            </div>
-            <p className="text-4xl font-semibold text-white">IATA</p>
-            <p className="mt-3 text-sm text-slate-300">Certified Programs</p>
-          </div>
-          <div className="rounded relative pt-25 bg-[#001B4D] p-8">
-            <div className="mb-5 flex h-12 absolute right-3 top-3 w-12 items-center justify-center rounded-3xl bg-white/10 text-white">
-              <Briefcase size={20} />
-            </div>
-            <p className="text-4xl font-semibold text-white">15+</p>
-            <p className="mt-3 text-sm text-slate-300">Courses Programs</p>
-          </div>
-        </div>
-      </motion.section>
+      </section>
     </div>
   );
 };

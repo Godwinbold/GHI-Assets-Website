@@ -55,7 +55,7 @@ export const AIRLINES = [
   },
   {
     id: 6,
-    title: "Air Coted'Ivore",
+    title: "Air Cote d'Ivoire",
     subtitle: 'Airline Representative West Africa (ARWA)',
     company: "Air Cote d'Ivoire",
     description: "Say yes to the world. Air Cote d'Ivoire excellence in the skies with premium connections across all continents.",

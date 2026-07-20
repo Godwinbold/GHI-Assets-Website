@@ -8,14 +8,6 @@ export const features = [
     icon: "users",
   },
   {
-    title: "Industrial Attachment",
-    icon: "briefcase",
-  },
-  {
-    title: "Job Placement Opportunity",
-    icon: "check",
-  },
-  {
     title: "Serene Learning Environment",
     icon: "clock",
   },
