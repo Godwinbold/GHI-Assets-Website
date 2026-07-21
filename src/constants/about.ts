@@ -7,7 +7,7 @@ export const about_services = [
   {
     id: 2,
     title: "Business and Leisure Travel",
-    image: "/images/sea-shore.png",
+    image: "/images/leisure.png",
   },
   {
     id: 3,
