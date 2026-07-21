@@ -6,7 +6,7 @@ import { fadeInUp, staggerContainer, defaultViewport } from "../../lib/animation
 
 const leaders = [
   {
-    imageSrc: "/images/chairman.png",
+    imageSrc: "/images/CEO.png",
     name: "Mr. Olufemi Adefope",
     role: "Group Chairman",
     description: `Before structured airline representation had a name in Nigeria, it had a face."
@@ -15,7 +15,7 @@ A distinguished aviation professional with over 45 years of experience in the gl
    As Group Chairman, he provides strategic oversight, governance leadership, and long-term value creation for the Group.`,
   },
   {
-    imageSrc: "/images/group_counsel.png",
+    imageSrc: "/images/EVC.png",
     name: "Mrs. Adebola Adefope",
     role: "EVC & Group Counsel",
     description: `   Some build companies. Others build the legal foundations they stand on.

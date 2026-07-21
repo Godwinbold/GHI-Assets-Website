@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { fadeInUp, staggerContainer, defaultViewport } from "../lib/animations";
 import CargoContactModal from "../components/cargo/CargoContactModal";
+import SEO from "../components/common/SEO";
 
 const SPECIALTY_META = {
   general: { label: "General Cargo", icon: "box" },
@@ -288,7 +290,11 @@ function CompactCarrier({ partner, reversed, onContactClick }: any) {
       className="grid items-center gap-8 rounded-sm bg-slate-50 p-8 sm:p-10 md:grid-cols-[0.8fr_1fr] md:gap-10 overflow-hidden"
     >
       <div className={`group ${reversed ? "md:order-2" : "md:order-1"}`}>
-        <CargoMedia src={partner.image} alt={`${partner.name} aircraft and ground handling operations`} iata={partner.iata} />
+        <CargoMedia
+          src={partner.image}
+          alt={`${partner.name} — international air cargo and freight services from ${partner.hub}`}
+          iata={partner.iata}
+        />
         <p className="mt-2 text-xs text-slate-500">{partner.hub} · regional network</p>
       </div>
       <div className={reversed ? "md:order-1" : "md:order-2"}>
@@ -320,7 +326,11 @@ function StandardCarrier({ partner, reversed, onContactClick }: any) {
       className="group grid items-center gap-10 border-t border-slate-200 py-14 first:border-t-0 sm:py-16 md:grid-cols-2 md:gap-14 overflow-hidden"
     >
       <div className={reversed ? "md:order-2" : "md:order-1"}>
-        <CargoMedia src={partner.image} alt={`${partner.name} aircraft and ground handling operations`} iata={partner.iata} />
+        <CargoMedia
+          src={partner.image}
+          alt={`${partner.name} — air cargo and international freight services from ${partner.hub}`}
+          iata={partner.iata}
+        />
       </div>
       <div className={reversed ? "md:order-1" : "md:order-2"}>
         <Waybill iata={partner.iata} hub={partner.hub} />
@@ -383,7 +393,12 @@ function FeatureCarrier({ partner, onContactClick }: any) {
           <CtaButton cta={partner.cta} dark onClick={partner.cta.label === "Contact Cargo Team" ? onContactClick : undefined} />
         </div>
         <div className="group">
-          <CargoMedia src={partner.image} alt={`${partner.name} aircraft and ground handling operations`} iata={partner.iata} dark />
+          <CargoMedia
+            src={partner.image}
+            alt={`${partner.name} — flagship international air cargo network serving Africa, Europe, Asia and the Americas`}
+            iata={partner.iata}
+            dark
+          />
         </div>
       </div>
     </motion.article>
@@ -419,9 +434,96 @@ export default function CargoPage() {
   const [activeId] = useState(CARGO_PARTNERS[0].id);
   const [modalOpen, setModalOpen] = useState(false);
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ghiassets.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Cargo Services", "item": "https://ghiassets.com/cargo" },
+        ],
+      },
+      {
+        "@type": "Service",
+        "@id": "https://ghiassets.com/cargo#service",
+        "name": "Air Cargo Sales & Representation — Nigeria & West Africa",
+        "description": "GHI Assets Limited provides air cargo sales representation and international freight solutions across Nigeria and West Africa, partnering with Turkish Airlines Cargo, United Cargo, RwandAir Cargo, South African Airways Cargo, and Air Côte d'Ivoire Cargo.",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://ghiassets.com/#organization",
+          "name": "GHI Assets Limited",
+          "url": "https://ghiassets.com",
+          "logo": "https://ghiassets.com/images/logo.png",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "45 Oduduwa Way, Ikeja GRA",
+            "addressLocality": "Lagos",
+            "addressCountry": "NG",
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+234-803-491-1715",
+            "email": "info@ghiassets.com",
+            "contactType": "cargo sales",
+          },
+        },
+        "areaServed": [
+          { "@type": "Country", "name": "Nigeria" },
+          { "@type": "Place", "name": "West Africa" },
+          { "@type": "Place", "name": "Africa" },
+        ],
+        "serviceType": [
+          "Air Cargo Sales Representation",
+          "International Air Freight",
+          "Cargo Booking Nigeria",
+          "Temperature-Controlled Cargo",
+          "Pharmaceutical Air Freight",
+          "Dangerous Goods Handling",
+          "Oversized Cargo Shipping",
+        ],
+        "url": "https://ghiassets.com/cargo",
+      },
+      {
+        "@type": "ItemList",
+        "name": "Air Cargo Partner Carriers",
+        "description": "International airline cargo partners represented by GHI Assets Limited in Nigeria and West Africa",
+        "itemListElement": CARGO_PARTNERS.map((p, i) => ({
+          "@type": "ListItem",
+          "position": i + 1,
+          "name": p.name,
+          "url": `https://ghiassets.com/cargo#${p.id}`,
+        })),
+      },
+    ],
+  };
+
   return (
+    <>
+      <SEO
+        title="Air Cargo Services Nigeria | International Freight & Cargo Booking | GHI Assets"
+        description="Book air cargo across 6 continents with GHI Assets Limited. Trusted cargo sales representation in Nigeria for Turkish Airlines, United Cargo, RwandAir & more."
+        keywords="air cargo Nigeria, international air freight, cargo booking Lagos, air cargo services West Africa, cargo sales representation, international shipping Nigeria, pharmaceutical cargo, dangerous goods air freight, cargo logistics Nigeria"
+        canonicalPath="/cargo"
+        image="/images/cargoplane.png"
+        schema={schema}
+      />
+
     <div className="mx-auto max-w-[1180px] px-5 sm:px-8 overflow-hidden">
+      {/* JSON-LD injected via SEO component above */}
       <CargoContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+
+      {/* Breadcrumb nav */}
+      <nav aria-label="Breadcrumb" className="pt-6 pb-2">
+        <ol className="flex items-center gap-2 text-xs text-slate-400 font-mono">
+          <li><Link to="/" className="hover:text-slate-600 transition-colors">Home</Link></li>
+          <li aria-hidden="true">·</li>
+          <li><Link to="/services" className="hover:text-slate-600 transition-colors">Services</Link></li>
+          <li aria-hidden="true">·</li>
+          <li className="text-slate-600 font-semibold" aria-current="page">Cargo</li>
+        </ol>
+      </nav>
+
       <motion.section
         initial="hidden"
         whileInView="visible"
@@ -431,12 +533,12 @@ export default function CargoPage() {
         className="grid items-center gap-10 py-16 sm:py-20 md:grid-cols-[1.1fr_0.9fr] md:gap-16 lg:py-24"
       >
         <motion.div variants={fadeInUp}>
-          <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Air Freight Network</p>
+          <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Air Freight Network · Nigeria &amp; West Africa</p>
           <h1 id="cargo-hero-heading" className="mb-5 max-w-[16ch] text-4xl font-semibold leading-[1.08] tracking-tight text-slate-900 sm:text-5xl">
-            Cargo that keeps the world's supply chains moving
+            Air Cargo Services that keep the world's supply chains moving
           </h1>
           <p className="mb-9 max-w-[52ch] text-base text-slate-700 sm:text-lg">
-            We connect shippers and forwarders to a network of trusted carrier partners, moving everything from routine pallets to temperature-sensitive pharmaceuticals across six continents. Every partnership below is built for one thing: cargo that arrives exactly when your business needs it to.
+            GHI Assets connects shippers and freight forwarders to a network of trusted international cargo carriers — moving general freight, temperature-controlled pharmaceuticals, dangerous goods, and oversized cargo across six continents. Every air freight partnership is built for one thing: reliable cargo logistics that arrive exactly when your business needs it.
           </p>
           <dl className="flex flex-wrap gap-7 border-t border-slate-200 pt-7 sm:gap-11">
             <div>
@@ -452,13 +554,32 @@ export default function CargoPage() {
               <dd className="font-mono text-lg font-semibold text-slate-900">General → Dangerous Goods</dd>
             </div>
           </dl>
+
+          {/* Internal links */}
+          <div className="mt-8 flex flex-wrap gap-4 text-sm">
+            <button
+              type="button"
+              onClick={() => setModalOpen(true)}
+              className="inline-flex items-center gap-1.5 rounded-sm bg-slate-900 px-5 py-2.5 font-semibold text-white transition hover:bg-slate-700"
+            >
+              Request a Cargo Quote
+            </button>
+            <Link
+              to="/contacts"
+              className="inline-flex items-center gap-1.5 rounded-sm border border-slate-300 px-5 py-2.5 font-semibold text-slate-700 transition hover:border-slate-900 hover:text-slate-900"
+            >
+              Contact Us
+            </Link>
+          </div>
         </motion.div>
+
         <motion.div
           variants={fadeInUp}
           aria-hidden="true"
           className="relative min-h-[160px] opacity-70 md:min-h-[220px] md:opacity-100"
         >
-          <svg viewBox="0 0 360 320" className="h-auto w-full overflow-visible">
+          <svg viewBox="0 0 360 320" className="h-auto w-full overflow-visible" role="img" aria-label="Global air freight route network illustration">
+            <title>Global air cargo route network across 6 continents</title>
             <g className="text-amber-600/60" fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 6" strokeLinecap="round">
               <path d="M40 260 C 120 180, 160 120, 260 60" />
               <path d="M60 60 C 130 110, 170 180, 300 250" />
@@ -473,11 +594,20 @@ export default function CargoPage() {
 
       <ManifestIndex activeId={activeId} />
 
-      <section aria-label="Cargo carrier partners" className="pb-16 sm:pb-20 lg:pb-24 grid gap-12">
+      <section aria-label="International air cargo carrier partners — Nigeria & West Africa" className="pb-16 sm:pb-20 lg:pb-24 grid gap-12">
         {CARGO_PARTNERS.map((partner, index) => (
           <CarrierEntry partner={partner} index={index} key={partner.id} onContactClick={() => setModalOpen(true)} />
         ))}
       </section>
+
+      {/* Internal linking footer */}
+      <aside aria-label="Related pages" className="border-t border-slate-100 py-10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm text-slate-500">
+        <Link to="/" className="hover:text-slate-900 transition-colors">← Home</Link>
+        <Link to="/services" className="hover:text-slate-900 transition-colors">Our Services</Link>
+        <Link to="/about" className="hover:text-slate-900 transition-colors">About GHI Assets</Link>
+        <Link to="/contacts" className="hover:text-slate-900 transition-colors">Contact Us</Link>
+      </aside>
     </div>
+    </>
   );
 }
